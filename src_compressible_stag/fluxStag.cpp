@@ -14,11 +14,11 @@ void calculateFluxStag(const MultiFab& cons_in, const std::array< MultiFab, AMRE
                        std::array< MultiFab, AMREX_SPACEDIM>& stochface_in,
                        std::array< MultiFab, 2 >& stochedge_x_in,
                        std::array< MultiFab, 2 >& stochedge_y_in,
-                       std::array< MultiFab, 2 >& stochedge_z_in,
+                       std::array< MultiFab, 2 >& /*stochedge_z_in*/,
                        std::array< MultiFab, AMREX_SPACEDIM>& stochcen_in,
                        const amrex::Geometry& geom,
-		                   const amrex::Vector< amrex::Real >& stoch_weights,
-		                   const amrex::Real dt)
+                       const amrex::Vector< amrex::Real >& /*stoch_weights*/,
+                       const amrex::Real dt)
 {
     BL_PROFILE_VAR("calculateFluxStag()",calculateFluxStag);
     
@@ -129,10 +129,10 @@ void calculateFluxStag(const MultiFab& cons_in, const std::array< MultiFab, AMRE
 
             const Array4<Real>& stochedgex_v = stochedge_x_in[0].array(mfi);
             const Array4<Real>& stochedgex_w = stochedge_x_in[1].array(mfi);
-            const Array4<Real>& stochedgey_u = stochedge_y_in[0].array(mfi);
+            // const Array4<Real>& stochedgey_u = stochedge_y_in[0].array(mfi);
             const Array4<Real>& stochedgey_w = stochedge_y_in[1].array(mfi);
-            const Array4<Real>& stochedgez_u = stochedge_z_in[0].array(mfi);
-            const Array4<Real>& stochedgez_v = stochedge_z_in[1].array(mfi);
+            // const Array4<Real>& stochedgez_u = stochedge_z_in[0].array(mfi);
+            // const Array4<Real>& stochedgez_v = stochedge_z_in[1].array(mfi);
 
             const Array4<Real>& stochcenx_u = stochcen_in[0].array(mfi);
             const Array4<Real>& stochceny_v = stochcen_in[1].array(mfi);
@@ -143,7 +143,7 @@ void calculateFluxStag(const MultiFab& cons_in, const std::array< MultiFab, AMRE
                          Array4<Real const> const& velz = vel_in[2].array(mfi););
 
             const Array4<const Real> prim = prim_in.array(mfi);
-            const Array4<const Real> cons = cons_in.array(mfi);
+            // const Array4<const Real> cons = cons_in.array(mfi);
 
             const Array4<const Real> eta   = eta_in.array(mfi);
             const Array4<const Real> zeta  = zeta_in.array(mfi);
@@ -156,7 +156,7 @@ void calculateFluxStag(const MultiFab& cons_in, const std::array< MultiFab, AMRE
             const Box& tbz = mfi.nodaltilebox(2);
 
             IntVect nd(AMREX_D_DECL(1,1,1));
-            const Box& tbn = mfi.tilebox(nd);
+            // const Box& tbn = mfi.tilebox(nd);
 
             const Box & bx_xy = mfi.tilebox(nodal_flag_xy);
             #if (AMREX_SPACEDIM == 3)
@@ -816,16 +816,16 @@ void calculateFluxStag(const MultiFab& cons_in, const std::array< MultiFab, AMRE
                      const Array4<Real> tauyz = tau_diagoff[1].array(mfi);,
                      const Array4<Real> tauxz = tau_diagoff[2].array(mfi););
 
-        AMREX_D_TERM(Array4<Real const> const& momx = cumom_in[0].array(mfi);,
-                     Array4<Real const> const& momy = cumom_in[1].array(mfi);,
-                     Array4<Real const> const& momz = cumom_in[2].array(mfi););
+//        AMREX_D_TERM(Array4<Real const> const& momx = cumom_in[0].array(mfi);,
+//                     Array4<Real const> const& momy = cumom_in[1].array(mfi);,
+//                     Array4<Real const> const& momz = cumom_in[2].array(mfi););
 
         AMREX_D_TERM(Array4<Real const> const& velx = vel_in[0].array(mfi);,
                      Array4<Real const> const& vely = vel_in[1].array(mfi);,
                      Array4<Real const> const& velz = vel_in[2].array(mfi););
 
         const Array4<const Real> prim = prim_in.array(mfi);
-        const Array4<const Real> cons = cons_in.array(mfi);
+        // const Array4<const Real> cons = cons_in.array(mfi);
         
         const Array4<const Real> eta   = eta_in.array(mfi);
         const Array4<const Real> zeta  = zeta_in.array(mfi);
@@ -838,7 +838,7 @@ void calculateFluxStag(const MultiFab& cons_in, const std::array< MultiFab, AMRE
         const Box& tbz = mfi.nodaltilebox(2);
 
         IntVect nd(AMREX_D_DECL(1,1,1));
-        const Box& tbn = mfi.tilebox(nd);
+        // const Box& tbn = mfi.tilebox(nd);
 
         const Box & bx_xy = mfi.tilebox(nodal_flag_xy);
         #if (AMREX_SPACEDIM == 3)
