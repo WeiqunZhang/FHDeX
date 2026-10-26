@@ -192,7 +192,7 @@ AmrCoreAdv::Evolve ()
         }
 
 #ifdef AMREX_MEM_PROFILING
-        {
+        if (mem_report_int > 0 && (step+1) % mem_report_int == 0) {
             std::ostringstream ss;
             ss << "[STEP " << step+1 << "]";
             MemProfiler::report(ss.str());
@@ -1353,6 +1353,7 @@ AmrCoreAdv::ReadParameters ( amrex::Vector<int>& bc_lo, amrex::Vector<int>& bc_h
             Abort("drift_flux_type = 1 or 2 needs diff_coeff > 0");
         }
         pp.query("neg_diag_int", neg_diag_int);
+        pp.query("mem_report_int", mem_report_int);
         pp.query("drift_diag_int", drift_diag_int);
         pp.query("drift_cfl", drift_cfl);
         pp.query("struct_fact_int", struct_fact_int);

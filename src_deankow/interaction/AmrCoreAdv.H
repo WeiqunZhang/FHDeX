@@ -224,6 +224,10 @@ private:
     // print negative-density diagnostics every neg_diag_int steps (0 = off)
     int neg_diag_int = 0;
 
+    // with MEM_PROFILE=TRUE, append a memory report to memlog every
+    // mem_report_int steps (0 = off)
+    int mem_report_int = 1;
+
     // structure factor of phi on level 0, accumulated every struct_fact_int
     // steps after n_steps_skip (0 = off) and written with each plotfile
     int struct_fact_int = 0;
